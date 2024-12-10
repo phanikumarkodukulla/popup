@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Pop-up</title>
+  <link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap" rel="stylesheet">
+
+</head>
+<body style="margin: 0; font-family: Arial;">
+
+  <!-- Top-right button -->
+  <button id="showPopup" style="position: absolute; top: 10px; right: 10px; padding: 10px; font-size: 20px; background-color: red; color: white; border: none; border-radius: 20px; cursor: pointer;">
+    Instructions
+  </button>
+
+  <!-- Popup Container -->
+  <div id="popup" 
+    style="display: auto; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); 
+          width: 300px; background-color: white; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); 
+          border-radius: 10px; padding: 20px; z-index: 1000; text-align: center;font-family: 'Audiowide', sans-serif;
+" 
+    aria-hidden="true">
+    <i class="fas fa-exclamation-triangle" style="font-size: 40px; color: red;" aria-hidden="true"></i>
+    <h2 style="font-size: 20px; margin: 15px 0; color: #333;">Notice</h2>
+    
+  <!-- Audio Elements -->
+  <strong>BLUE:-</strong>
+ <audio id="blue" src="sounds/blue.mp3" controls></audio>
+ <strong>GREEN:-</strong>
+<audio id="green" src="sounds/green.mp3" controls></audio><strong>RED:-</strong>
+<audio id="red" src="sounds/red.mp3" controls></audio><strong>YELLOW:-</strong>
+<audio id="yellow" src="sounds/yellow.mp3" controls></audio><strong>WRONG:-</strong>
+<audio id="wrong" src="sounds/wrong.mp3" controls></audio>
+    <!-- Close Button -->
+    <button id="closePopup" 
+      style="padding: 10px; font-size: 30px; border: none; cursor: pointer; margin-top: 15px; background: transparent;">
+      <i class="fas fa-window-close"></i>
+    </button>
+  </div>
+
+  <!-- Overlay -->
+  <div id="overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999;"></div>
+
+
+
+  <script>
+    // Show and Hide Popup
+    const popup = document.getElementById("popup");
+    const overlay = document.getElementById("overlay");
+    const showPopupBtn = document.getElementById("showPopup");
+    const closePopup = document.getElementById("closePopup");
+
+    // Show the popup
+    function showPopup() {
+      popup.style.display = "block";
+      overlay.style.display = "block";
+      popup.setAttribute("aria-hidden", "false");
+    }
+
+    // Close the popup
+    function hidePopup() {
+      popup.style.display = "none";
+      overlay.style.display = "none";
+      popup.setAttribute("aria-hidden", "true");
+    }
+
+    // Attach event listeners
+    showPopupBtn.addEventListener("click", showPopup);
+    closePopup.addEventListener("click", hidePopup);
+
+    // Trigger sound
+    function playSound(name) {
+  // Get the audio element by its ID
+  var audio = document.getElementById(name);
+  if (audio) {
+    audio.currentTime = 0; // Reset the playback position
+    audio.play(); // Play the sound
+  } else {
+    console.error("Audio file for", name, "not found.");
+  }
+}
+
+
+    // Example trigger on load (optional)
+    showPopup();
+    playSound("blue");
+  </script>
+
+</body>
+
+<body>
+ 
+  <h1 id="level-title">Press A Key to Start</h1>
+  <h3 align = "center" style = "color:white;">Match the given sound with the key color and move on to the next level.</h3>
+  <div class="container">
+    <div lass="row">
+
+      <div type="button" id="green" class="btn green">
+
+      </div>
+
+      <div type="button" id="red" class="btn red">
+
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div type="button" id="yellow" class="btn yellow">
+
+      </div>
+      <div type="button" id="blue" class="btn blue">
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="game.js" charset="utf-8"></script>
+
+</body>
+
+</html>
